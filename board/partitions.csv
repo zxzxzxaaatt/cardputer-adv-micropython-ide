@@ -1,0 +1,8 @@
+# Partition table for M5Stack Cardputer ADV (16MiB flash)
+# Application starts at 0x10000 so the resulting app.bin can be flashed
+# directly at 0x10000 (e.g. via M5Launcher / esptool).
+# Name,   Type, SubType, Offset,   Size,     Flags
+nvs,      data, nvs,     0x9000,   0x4000,
+phy_init, data, phy,     0xf000,   0x1000,
+factory,  app,  factory, 0x10000,  0x300000,
+vfs,      data, fat,     0x310000, 0xCF0000,
