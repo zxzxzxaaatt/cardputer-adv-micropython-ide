@@ -1,0 +1,15 @@
+Cardputer ADV IDE v5 固件校验值
+
+# app（烧 0x10000）
+f531872dff43670f58e47898fc80517af9f4b2e87589effe1fc51e04b1ea8e99  CardputerADV_v5_app_0x10000.bin   (2037168 bytes)
+
+# bootloader（烧 0x0）
+a5c3b7df0ef1338b8bc4d00d248263083e3a3f0d42dc88ae769a0e960dbee643  bootloader_0x0.bin   (19072 bytes)
+
+# 分区表（烧 0x8000，与 v4 一致）
+1ec0da11b8644aff5e71bbfdc23c9e1fe896b895b850956123766a653c350d7b  partition-table_0x8000.bin   (3072 bytes)
+
+# 分区布局
+# nvs 0x9000 16K / phy_init 0xf000 4K / factory 0x10000 3MB / vfs 0x310000 12.9MB
+
+# 校验：sha256sum -c SHA256SUMS.txt（bin 放同目录）
