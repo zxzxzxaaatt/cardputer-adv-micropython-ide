@@ -2,7 +2,35 @@
 
 M5Stack Cardputer ADV（ESP32-S3 / 16 MB Flash / 无 PSRAM）上的一套中文图形 IDE，跑在 MicroPython 1.29 上。屏幕 240×135、键盘是 Cardputer 的 56 键（带 Fn 层）。
 
-当前版本 **v5**（2026-11-26）· [English summary](README_EN.md)
+当前版本 **v5**（2026-11-26）· [English summary](README_EN.md) · 实机照片见 [实机演示](#实机演示)
+
+---
+
+## 实机演示
+
+以下均为真机拍摄，v5 固件、紫色主题、SD 卡里放了几个示例文件。
+
+**编辑器 + 文件栏 + 问题面板**：左侧列出 `dim.py / xx.py / edit.py / errorlog / guide / hello_`，编辑区是 `import dev` / `class BT:` / `def on_kbe(self, e, d0)`，问题面板报 `L6 缺少冒号`。
+
+<img src="https://aka.doubaocdn.com/s/CDMRMuR4Eo" width="330">
+
+**终端半屏**：对话框式 `>>>` 提示符，右侧竖排写着“终端”，底栏提示 `Ctrl+`。
+
+<img src="https://aka.doubaocdn.com/s/Rto7SGb66d" width="330">
+
+**终端全屏**：敲入 `print("p")`，整块屏幕都是 REPL，同手可看完整回溯。
+
+<img src="https://aka.doubaocdn.com/s/wbV8f3eUHO" width="330">
+
+**命令面板**：`Ctrl+P` 展开的样子——“另存为 / 运行当前文件 / 资源管理器”一行行排下去，顶栏右侧变成“命令”。
+
+<img src="https://aka.doubaocdn.com/s/uVWXxIEuMh" width="330">
+
+**问题面板定位**：同一行报错展开后的详情（`L6 缺少冒号` + 全文计数），光标同时跳到了那行。
+
+<img src="https://aka.doubaocdn.com/s/2zHranYcIl" width="330">
+
+> 照片放在外部图床（GitHub 的文件接口不收二进制）。如果哪张挂了，开个 issue 我换新链。
 
 ---
 
@@ -119,7 +147,7 @@ M5Stack Cardputer ADV（ESP32-S3 / 16 MB Flash / 无 PSRAM）上的一套中文�
 | 展开问题面板 | 再跑一次 `CheckAll()`，计数是全文的 |
 | 开机还原 | 上次面板是展开的就展开，并跑全文检查 |
 
-**问题面板操作：** `↑/↓`（或 Fn 层 `.` / `;`）上下选，选中项会同时把光标跳到对应行；`Enter` 回到编辑并把光标放到那一行；`Esc` 回编辑。顶部 `1/7` 是当前第几条 / 共几条。
+**问题面板操作：** `↑/↓`（或 Fn 层 `.` / `;`）上下选，选中项会同时把光标跳到对应行；`Enter` 回到编辑并把光标放到那一行；`Esc` 回编辑。顶部 `1/7` 是当前第几条 / 共几条。实机效果见 [末尾那张问题面板照](#实机演示)。
 
 ---
 
@@ -259,6 +287,8 @@ M5Stack Cardputer ADV（ESP32-S3 / 16 MB Flash / 无 PSRAM）上的一套中文�
 
 > **已知问题（v5）**：第 16 项“模拟终端”和第 6 项“终端面板”在内部用了同一个动作键 `term`，`elif` 链里前者先命中，所以选“模拟终端”实际执行的是**切换终端面板**，模拟终端当前打不开。源码修复只需给第 16 项换一个独立键（`termapp`）并在 `_act` 里加一支，改动 2 行。
 
+（面板展开的样子见 [实机演示](#实机演示) 第四张。）
+
 ---
 
 ## 9. 左侧文件栏（资源管理器）
@@ -275,7 +305,7 @@ M5Stack Cardputer ADV（ESP32-S3 / 16 MB Flash / 无 PSRAM）上的一套中文�
 
 ### 终端面板（`Ctrl+`` / `Ctrl+J`）
 
-三态：**关 → 半屏 → 全屏**。切到终端时会自动 `dupterm` 挂上 REPL；`Ctrl+方向键` 在终端里是**滚动输出视图**（上下按行、左右按 4 字符宽），不动光标，方便翻回完整报错。
+三态：**关 → 半屏 → 全屏**。切到终端时会自动 `dupterm` 挂上 REPL；`Ctrl+方向键` 在终端里是**滚动输出视图**（上下按行、左右按 4 字符宽），不动光标，方便翻回完整报错。半屏和全屏的样子见 [实机演示](#实机演示) 第二、三张。
 
 “运行当前文件”不是内联 `exec`，而是把 `exec(open("path").read())` 当作输入喂给屏幕 REPL，所以 `while True` 里也能用 `Ctrl+C` 真正打断。
 
