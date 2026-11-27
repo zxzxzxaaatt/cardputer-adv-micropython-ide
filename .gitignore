@@ -1,0 +1,7 @@
+build/
+*.elf
+__pycache__/
+*.pyc
+*.orig
+micropython/
+usermods/
